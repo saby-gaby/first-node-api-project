@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "script": {
-    "start": "node src/currencyConverter.js",
-    "deploy": "chmod +x src/currencyConverter.js && npm link",
+    "start": "node src/index.js",
+    "deploy": "chmod +x src/index.js && npm link",
     "undeploy": "npm unlink"
   },
   "bin": {
-    "currencyConverter": "src/currencyConverter.js"
+    "index": "src/index.js"
   },
   "repository": {
     "type": "git",

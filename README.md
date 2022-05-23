@@ -1,5 +1,7 @@
 # First Node API Project
 
+![Our plan](./plan.png)
+
 ## Starter command
 ```cmd
 npm init -y

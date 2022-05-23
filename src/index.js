@@ -20,12 +20,14 @@ class Vacation {
       )
       .catch((err) => console.log(err));
   }
-  index(){
+
+  currency(){
   const host = 'api.frankfurter.app';
-  axios.get(`https://${host}/latest?amount=10&from=GBP&to=USD`)
+  axios.get(`https://${host}/latest?${this.amount}&from=GBP&to=USD`)
   .then(resp => console.log(resp.data))
   .catch(function (error) {console.error(error)});
   }
 }
 const newDestination = new Vacation(process.argv.slice(2));
 newDestination.weather();
+newDestination.currency();

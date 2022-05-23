@@ -10,7 +10,9 @@
   },
   "bin": {
     "currency": "src/index.js",
-    "weather": "src/index.js"
+    "weather": "src/index.js",
+    "flights": "src/index.js"
+
   },
   "repository": {
     "type": "git",

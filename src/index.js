@@ -20,12 +20,14 @@ class Vacation {
       )
       .catch((err) => console.log(err));
   }
-
-  currency(){
-  const host = 'api.frankfurter.app';
-  axios.get(`https://${host}/latest?${this.amount}&from=GBP&to=USD`)
-  .then(resp => console.log(resp.data))
-  .catch(function (error) {console.error(error)});
+  currency() {
+    const host = "api.frankfurter.app";
+    axios
+      .get(`https://${host}/latest?${this.amount}&from=GBP&to=USD`)
+      .then((resp) => console.log(resp.data))
+      .catch(function (error) {
+        console.error(error);
+      });
   }
 }
 const newDestination = new Vacation(process.argv.slice(2));

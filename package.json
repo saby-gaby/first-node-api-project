@@ -11,8 +11,8 @@
   "bin": {
     "currency": "src/index.js",
     "weather": "src/index.js",
-    "flights": "src/index.js"
-
+    "schulferien": "src/index.js",
+    "currentLocation": "src/index.js"
   },
   "repository": {
     "type": "git",

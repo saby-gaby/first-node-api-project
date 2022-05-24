@@ -9,7 +9,6 @@ class Vacation {
   weather() {
     let API_Key = "b0289e1b34874bb29ea72328221905";
     let baseUrl = "http://api.weatherapi.com/v1";
-
     let endPoint = `${baseUrl}/current.json?key=${API_Key}&q=${this.city}`;
     axios
       .get(endPoint)
@@ -34,11 +33,28 @@ class Vacation {
         console.error(error);
       });
   }
+  currentLocation() {
+    const options = {
+      method: "GET",
+      url: "https://ip-geolocation-ipwhois-io.p.rapidapi.com/json/",
+      headers: {
+        "X-RapidAPI-Host": "ip-geolocation-ipwhois-io.p.rapidapi.com",
+        "X-RapidAPI-Key": "1a6fc2edb4msh43cf7d49963f2bap126f53jsn31a4437adf8b",
+      },
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  }
 }
-const newDestination = new Vacation(
-  process.argv.slice(2)[0],
-  process.argv.slice(2)[1]
-);
+const newDestination = new Vacation(...process.argv.slice(2));
 
 newDestination.weather();
 newDestination.currency();
+newDestination.currentLocation();

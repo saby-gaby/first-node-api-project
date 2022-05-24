@@ -63,6 +63,7 @@ class Vacation {
 }
 const newDestination = new Vacation(...process.argv.slice(2));
 
+
 newDestination.weather();
 newDestination.currency();
 // newDestination.schulferien();

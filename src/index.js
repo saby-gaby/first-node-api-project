@@ -22,20 +22,19 @@ class Vacation {
   }
 
 
-  currency(){
-  const host = 'api.frankfurter.app';
-  axios.get(`https://${host}/latest?to=USD,GBP,RON,CZK&amount=${this.amount}`)
-
-  
-
-  .then(resp =>{ 
-    console.log(this.amount);
-    console.log(resp.data)})
+currency(){
+const host = 'api.frankfurter.app';
+axios
+  .get(`https://${host}/latest?to=USD,GBP,RON,CZK&amount=${this.amount}`)
+  .then((resp)=>
+    {
+      console.log(
+        `On the date of ${resp.data.date}, amount of: ${resp.data.amount}-${resp.data.base} is: USD ${resp.data.rates.USD}, GBP ${resp.data.rates.GBP}, RON ${resp.data.rates.RON} Thank you and have a good day from your team Ivan, Oxana, Sabina and Mercedes!`
+      )
+    })
   .catch(function (error) {console.error(error)});
   }
 }
 const newDestination = new Vacation(process.argv.slice(2)[0],process.argv.slice(2)[1]);
-
-
 newDestination.weather();
 newDestination.currency();

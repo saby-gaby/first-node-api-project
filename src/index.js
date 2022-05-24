@@ -2,9 +2,11 @@
 const axios = require("axios");
 
 class Vacation {
-  constructor(city, amount) {
+  constructor(city, amount, checkinDate, checkoutDate) {
     this.city = city;
     this.amount = amount;
+    this.checkinDate = checkinDate;
+    this.checkoutDate = checkoutDate;
   }
   weather() {
     let API_Key = "b0289e1b34874bb29ea72328221905";
@@ -31,11 +33,73 @@ class Vacation {
       });
   }
   hotels() {
-    console.log(this.city);
+    console.log(
+      `There are following hotels in ${this.city} from ${this.checkinDate} to ${this.checkoutDate} :`
+    );
+
     const options = {
       method: "GET",
+      url: "https://booking-com.p.rapidapi.com/v1/hotels/locations",
+      params: { locale: "en-gb", name: this.city },
+      headers: {
+        "X-RapidAPI-Host": "booking-com.p.rapidapi.com",
+        "X-RapidAPI-Key": "a745873c88mshf27140e07b78acdp10694ajsna86646c2062d",
+      },
+    };
+
+    axios
+      .request(options)
+      .then((response) => {
+        const dest_id = response.data[0].dest_id;
+        let checkInDate = this.checkinDate;
+        let checkOutDate = this.checkoutDate;
+
+        const options1 = {
+          method: "GET",
+          url: "https://booking-com.p.rapidapi.com/v1/hotels/search",
+          params: {
+            checkout_date: checkOutDate,
+            units: "metric",
+            dest_id: dest_id,
+            dest_type: "city",
+            locale: "en-gb",
+            adults_number: "2",
+            order_by: "popularity",
+            filter_by_currency: "EUR",
+            checkin_date: checkInDate,
+            room_number: "1",
+            page_number: "0",
+            categories_filter_ids: "class::2,class::4,free_cancellation::1",
+            include_adjacency: "true",
+          },
+          headers: {
+            "X-RapidAPI-Host": "booking-com.p.rapidapi.com",
+            "X-RapidAPI-Key":
+              "a745873c88mshf27140e07b78acdp10694ajsna86646c2062d",
+          },
+        };
+
+        axios
+          .request(options1)
+          .then(function (response) {
+            response.data.result.forEach((hotel) =>
+              console.log(
+                `
+                --------------------------------------------------------------------
+                ${hotel.hotel_name} is located at ${hotel.address}.
+                 You can find here the room with price ${hotel.price_breakdown.all_inclusive_price} ${hotel.currencycode}`
+              )
+            );
+          })
+          .catch((error) => console.error(error));
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+    /*     const options = {
+      method: "GET",
       url: "https://hotels4.p.rapidapi.com/locations/v2/search",
-      params: { query: this.city /* , locale: "en_US", currency: "USD" */ },
+      params: { query: this.city /* , locale: "en_US", currency: "USD"  },
       headers: {
         "X-RapidAPI-Host": "hotels4.p.rapidapi.com",
         "X-RapidAPI-Key": "a745873c88mshf27140e07b78acdp10694ajsna86646c2062d",
@@ -50,10 +114,10 @@ class Vacation {
       })
       .catch(function (error) {
         console.error(error);
-      });
+      }); */
   }
 }
-const newDestination = new Vacation(process.argv.slice(2)[0]);
+const newDestination = new Vacation(...process.argv.slice(2));
 //newDestination.weather();
 //newDestination.currency();
 newDestination.hotels();

@@ -20,16 +20,22 @@ class Vacation {
       )
       .catch((err) => console.log(err));
   }
-  currency() {
-    const host = "api.frankfurter.app";
-    axios
-      .get(`https://${host}/latest?${this.amount}&from=GBP&to=USD`)
-      .then((resp) => console.log(resp.data))
-      .catch(function (error) {
-        console.error(error);
-      });
+
+
+  currency(){
+  const host = 'api.frankfurter.app';
+  axios.get(`https://${host}/latest?to=USD,GBP,RON,CZK&amount=${this.amount}`)
+
+  
+
+  .then(resp =>{ 
+    console.log(this.amount);
+    console.log(resp.data)})
+  .catch(function (error) {console.error(error)});
   }
 }
-const newDestination = new Vacation(process.argv.slice(2));
+const newDestination = new Vacation(process.argv.slice(2)[0],process.argv.slice(2)[1]);
+
+
 newDestination.weather();
 newDestination.currency();

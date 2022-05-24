@@ -26,12 +26,18 @@ class Vacation {
   currency() {
     const host = "api.frankfurter.app";
     axios
-      .get(`https://${host}/latest?${this.amount}&from=GBP&to=USD`)
-      .then((resp) => console.log(resp.data))
+      .get(`https://${host}/latest?to=USD,GBP,RON,CZK&amount=${this.amount}`)
+      .then((resp) => {
+        console.log(
+          `On the date of ${resp.data.date}, amount of: ${resp.data.amount}-${resp.data.base} is: USD ${resp.data.rates.USD}, GBP ${resp.data.rates.GBP}, RON ${resp.data.rates.RON} Thank you and have a good day from your team Ivan, Oxana, Sabina and Mercedes!`
+        );
+      })
+
       .catch(function (error) {
         console.error(error);
       });
   }
+
   hotels() {
     console.log(
       `There are following hotels in ${this.city} from ${this.checkinDate} to ${this.checkoutDate} :`
@@ -96,28 +102,9 @@ class Vacation {
       .catch(function (error) {
         console.error(error);
       });
-    /*     const options = {
-      method: "GET",
-      url: "https://hotels4.p.rapidapi.com/locations/v2/search",
-      params: { query: this.city /* , locale: "en_US", currency: "USD"  },
-      headers: {
-        "X-RapidAPI-Host": "hotels4.p.rapidapi.com",
-        "X-RapidAPI-Key": "a745873c88mshf27140e07b78acdp10694ajsna86646c2062d",
-      },
-    };
-
-    axios
-      .request(options)
-      .then(function (response) {
-        console.log(response.data);
-        console.log(response.data.suggestions[0].entities);
-      })
-      .catch(function (error) {
-        console.error(error);
-      }); */
   }
 }
 const newDestination = new Vacation(...process.argv.slice(2));
 //newDestination.weather();
 //newDestination.currency();
-newDestination.hotels();
+//newDestination.hotels();

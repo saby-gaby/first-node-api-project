@@ -1,0 +1,31 @@
+{
+  "name": "first-node-api-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "script": {
+    "start": "node src/index.js",
+    "deploy": "chmod +x src/index.js && npm link",
+    "undeploy": "npm unlink"
+  },
+  "bin": {
+    "currency": "src/index.js",
+    "weather": "src/index.js",
+    "flights": "src/index.js"
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saby-gaby/first-node-api-project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/saby-gaby/first-node-api-project/issues"
+  },
+  "homepage": "https://github.com/saby-gaby/first-node-api-project#readme",
+  "dependencies": {
+    "axios": "^0.27.2"
+  }
+}

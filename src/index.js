@@ -21,6 +21,7 @@ class Vacation {
       .catch((err) => console.log(err));
   }
 
+
   currency(){
   const host = 'api.frankfurter.app';
   axios.get(`https://${host}/latest?to=USD,GBP,RON,CZK&amount=${this.amount}`)
@@ -34,5 +35,7 @@ class Vacation {
   }
 }
 const newDestination = new Vacation(process.argv.slice(2)[0],process.argv.slice(2)[1]);
+
+
 newDestination.weather();
 newDestination.currency();

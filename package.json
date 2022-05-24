@@ -9,7 +9,10 @@
     "undeploy": "npm unlink"
   },
   "bin": {
-    "index": "src/index.js"
+    "currency": "src/index.js",
+    "weather": "src/index.js",
+    "flights": "src/index.js"
+
   },
   "repository": {
     "type": "git",

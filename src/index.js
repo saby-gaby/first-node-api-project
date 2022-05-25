@@ -39,10 +39,6 @@ class Vacation {
   }
 
   hotels() {
-    console.log(
-      `There are following hotels in ${this.city} from ${this.checkinDate} to ${this.checkoutDate} :`
-    );
-
     const options = {
       method: "GET",
       url: "https://booking-com.p.rapidapi.com/v1/hotels/locations",
@@ -57,6 +53,9 @@ class Vacation {
       .request(options)
       .then((response) => {
         const dest_id = response.data[0].dest_id;
+        console.log(
+          `There are following hotels in ${this.city} from ${this.checkinDate} to ${this.checkoutDate} :`
+        );
         let checkInDate = this.checkinDate;
         let checkOutDate = this.checkoutDate;
 
@@ -133,6 +132,6 @@ class Vacation {
 }
 
 const newDestination = new Vacation(...process.argv.slice(2));
-//newDestination.weather();
-//newDestination.currency();
-//newDestination.hotels();
+newDestination.weather();
+newDestination.currency();
+newDestination.hotels();

@@ -17,7 +17,8 @@ class Vacation {
       .get(endPoint)
       .then((res) =>
         console.log(
-          `${res.data.location.name} - ${res.data.current.condition.text} ${res.data.current.temp_c}°C.`
+          `${res.data.location.name} - ${res.data.current.condition.text} ${res.data.current.temp_c}°C.
+          --------------------------------------------------------------------`
         )
       )
       .catch((err) => console.log(err));
@@ -29,7 +30,9 @@ class Vacation {
       .get(`https://${host}/latest?to=USD,GBP,RON,CZK&amount=${this.amount}`)
       .then((resp) => {
         console.log(
-          `On the date of ${resp.data.date}, amount of: ${resp.data.amount}-${resp.data.base} is: USD ${resp.data.rates.USD}, GBP ${resp.data.rates.GBP}, RON ${resp.data.rates.RON} Thank you and have a good day from your team Ivan, Oxana, Sabina and Mercedes!`
+          `On the date of ${resp.data.date}, amount of: ${resp.data.amount}-${resp.data.base} is: USD ${resp.data.rates.USD}, GBP ${resp.data.rates.GBP}, RON ${resp.data.rates.RON} 
+          Thank you and have a good day from your team Ivan, Oxana, Sabina and Mercedes!
+          --------------------------------------------------------------------`
         );
       })
 
@@ -146,6 +149,9 @@ class Vacation {
             }.`
           );
         });
+        console.log(
+          `--------------------------------------------------------------------`
+        );
       })
       .catch(function (error) {
         console.error(error);

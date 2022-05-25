@@ -103,7 +103,7 @@ class Vacation {
         console.error(error);
       });
   }
-  schulferien() {
+  schoolVacation() {
     const options = {
       method: "GET",
       url: "https://schulferien-und-feiertage.p.rapidapi.com/school-holidays/next",
@@ -118,12 +118,31 @@ class Vacation {
       .request(options)
       .then(function (response) {
         const arr = response.data.data;
+        console.log("Upcoming school holidays:");
         arr.forEach((el) => {
-          console.log(el.name);
-          console.log(el.start);
-          console.log(el.end);
-          console.log(el.state);
-          console.log(el.duration);
+          console.log(
+            `${el.name} in ${el.state} is from ${el.start
+              .substring(2, 10)
+              .split("-")
+              .reverse()
+              .join("-")} to ${el.end
+              .substring(2, 10)
+              .split("-")
+              .reverse()
+              .join("-")}, total duration of ${el.duration.in_days} ${
+              el.duration.in_days == 1 ? "day" : "days"
+            } - ${el.duration.count_week_days} working day${
+              el.duration.count_week_days > 1 ? "s" : ""
+            }${
+              el.duration.count_weekend_days > 0
+                ? el.duration.count_weekend_days +
+                    el.duration.count_weekend_days >
+                  1
+                  ? " and " + el.duration.count_weekend_days + " weekend days"
+                  :  " and " + el.duration.count_weekend_days + " weekend day"
+                : ""
+            }.`
+          );
         });
       })
       .catch(function (error) {
@@ -135,4 +154,5 @@ class Vacation {
 const newDestination = new Vacation(...process.argv.slice(2));
 //newDestination.weather();
 //newDestination.currency();
+//newDestination.schoolVacation();
 //newDestination.hotels();

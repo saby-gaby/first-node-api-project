@@ -2,11 +2,12 @@
 const axios = require("axios");
 
 class Vacation {
-  constructor(city, amount, checkinDate, checkoutDate) {
+  constructor(city, amount, checkinDate, checkoutDate, bundesland) {
     this.city = city;
     this.amount = amount;
     this.checkinDate = checkinDate;
     this.checkoutDate = checkoutDate;
+    this.bundesland = bundesland;
   }
   weather() {
     let API_Key = "b0289e1b34874bb29ea72328221905";
@@ -109,10 +110,64 @@ class Vacation {
   }
 
   schoolVacation() {
+    let cut = "";
+    switch (this.bundesland) {
+      case "Baden-Württemberg":
+        cut = "BW";
+        break;
+      case "Bayern":
+        cut = "BY";
+        break;
+      case "Berlin":
+        cut = "BE";
+        break;
+      case "Bremen":
+        cut = "HB";
+        break;
+      case "Hamburg":
+        cut = "HH";
+        break;
+      case "Hessen":
+        cut = "HE";
+        break;
+      case "Mecklenburg-Vorpommern":
+        cut = "MV";
+        break;
+      case "Baden-Württemberg":
+        cut = "BW";
+        break;
+      case "Niedersachsen":
+        cut = "NI";
+        break;
+      case "Nordrhein-Westfalen":
+        cut = "NW";
+        break;
+      case "Rheinland-Pfalz":
+        cut = "RP";
+        break;
+      case "Rheinland-Pfalz":
+        cut = "RP";
+        break;
+      case "Saarland":
+        cut = "SL";
+        break;
+      case "Sachsen":
+        cut = "SN";
+        break;
+      case "Sachsen-Anhalt":
+        cut = "ST";
+        break;
+      case "Schleswig-Holstein":
+        cut = "SH";
+        break;
+      case "Thüringen":
+        cut = "TH";
+        break;
+    }
     const options = {
       method: "GET",
       url: "https://schulferien-und-feiertage.p.rapidapi.com/school-holidays/next",
-      params: { state: "BE", limit: "3", lang: "de" },
+      params: { state: cut, limit: "3", lang: "de" },
       headers: {
         "X-RapidAPI-Host": "schulferien-und-feiertage.p.rapidapi.com",
         "X-RapidAPI-Key": "255165c0e8mshf08490884766bf7p166332jsnd98856d09c9d",

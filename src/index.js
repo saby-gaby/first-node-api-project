@@ -39,10 +39,6 @@ class Vacation {
   }
 
   hotels() {
-    console.log(
-      `There are following hotels in ${this.city} from ${this.checkinDate} to ${this.checkoutDate} :`
-    );
-
     const options = {
       method: "GET",
       url: "https://booking-com.p.rapidapi.com/v1/hotels/locations",
@@ -57,8 +53,10 @@ class Vacation {
       .request(options)
       .then((response) => {
         const dest_id = response.data[0].dest_id;
+
         let checkInDate = this.checkinDate;
         let checkOutDate = this.checkoutDate;
+        let city = this.city;
 
         const options1 = {
           method: "GET",
@@ -88,6 +86,9 @@ class Vacation {
         axios
           .request(options1)
           .then(function (response) {
+            console.log(
+              `There are following hotels in ${city} from ${checkInDate} to ${checkOutDate} :`
+            );
             response.data.result.forEach((hotel) =>
               console.log(
                 `
@@ -103,6 +104,7 @@ class Vacation {
         console.error(error);
       });
   }
+
   schoolVacation() {
     const options = {
       method: "GET",
@@ -139,7 +141,7 @@ class Vacation {
                     el.duration.count_weekend_days >
                   1
                   ? " and " + el.duration.count_weekend_days + " weekend days"
-                  :  " and " + el.duration.count_weekend_days + " weekend day"
+                  : " and " + el.duration.count_weekend_days + " weekend day"
                 : ""
             }.`
           );
@@ -152,7 +154,8 @@ class Vacation {
 }
 
 const newDestination = new Vacation(...process.argv.slice(2));
-//newDestination.weather();
-//newDestination.currency();
-//newDestination.schoolVacation();
-//newDestination.hotels();
+
+// newDestination.weather();
+// newDestination.currency();
+// newDestination.schoolVacation();
+// newDestination.hotels();

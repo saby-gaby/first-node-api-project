@@ -49,7 +49,7 @@ class Vacation {
       params: { locale: "en-gb", name: this.city },
       headers: {
         "X-RapidAPI-Host": "booking-com.p.rapidapi.com",
-        "X-RapidAPI-Key": "a745873c88mshf27140e07b78acdp10694ajsna86646c2062d",
+        "X-RapidAPI-Key": "?????????????????",
       },
     };
 
@@ -83,7 +83,7 @@ class Vacation {
           headers: {
             "X-RapidAPI-Host": "booking-com.p.rapidapi.com",
             "X-RapidAPI-Key":
-              "a745873c88mshf27140e07b78acdp10694ajsna86646c2062d",
+              "?????????????????",
           },
         };
 
@@ -170,7 +170,7 @@ class Vacation {
       params: { state: cut, limit: "3", lang: "de" },
       headers: {
         "X-RapidAPI-Host": "schulferien-und-feiertage.p.rapidapi.com",
-        "X-RapidAPI-Key": "255165c0e8mshf08490884766bf7p166332jsnd98856d09c9d",
+        "X-RapidAPI-Key": "?????????????????",
       },
     };
 

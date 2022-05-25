@@ -3,18 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "script": {
+  "scripts": {
     "start": "node src/index.js",
     "deploy": "chmod +x src/index.js && npm link",
     "undeploy": "npm unlink"
   },
   "bin": {
-    "index": "src/index.js",
-    "currency": "src/index.js",
-    "weather": "src/index.js",
-    "flights": "src/index.js",
-    "schoolVacation": "src/index.js"
-
+    "vacation": "src/index.js"
   },
   "repository": {
     "type": "git",
@@ -30,7 +25,4 @@
   "dependencies": {
     "axios": "^0.27.2"
   }
-
 }
-
-

@@ -12,7 +12,8 @@
     "index": "src/index.js",
     "currency": "src/index.js",
     "weather": "src/index.js",
-    "flights": "src/index.js"
+    "flights": "src/index.js",
+    "schoolVacation": "src/index.js"
 
   },
   "repository": {

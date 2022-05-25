@@ -136,5 +136,4 @@ class Vacation {
 const newDestination = new Vacation(...process.argv.slice(2));
 newDestination.currency();
 newDestination.weather();
-
 newDestination.hotels();
